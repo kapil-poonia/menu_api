@@ -39,7 +39,7 @@ itemsRouter.get("/:id", async (req: Request, res: Response) => {
     try {
       const item: Item = await ItemService.find(id);
   
-      if (item) {
+      if (item) 
         return res.status(200).send(item);
       }
   
@@ -90,10 +90,7 @@ itemsRouter.put("/:id", async (req: Request, res: Response) => {
   
       res.status(201).json(newItem);
     } catch (error) {
-        let errorMessage = "Failed to do something exceptional";
-        if (error instanceof Error) {
-           errorMessage = error.message;
-       }
+        let errorMessage = (error instanceof Error) ? error.message : "Failed to do something exceptional";
       res.status(500).send(errorMessage);
     }
   });
@@ -108,10 +105,7 @@ itemsRouter.delete("/:id", async (req: Request, res: Response) => {
   
       res.sendStatus(204);
     } catch (error) {
-        let errorMessage = "Failed to do something exceptional";
-        if (error instanceof Error) {
-           errorMessage = error.message;
-       }
+        let errorMessage = (error instanceof Error) ? error.message : "Failed to do something exceptional";
       res.status(500).send(errorMessage);
     }
   });
